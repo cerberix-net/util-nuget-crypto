@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.Core", "Cerberix.Crypto.Core\Cerberix.Crypto.Core.csproj", "{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.DotNet", "Cerberix.Crypto.DotNet\Cerberix.Crypto.DotNet.csproj", "{C692D2AF-BDAB-4D68-AE29-E63EE7435D9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.BCryptNet", "Cerberix.Crypto.BCryptNet\Cerberix.Crypto.BCryptNet.csproj", "{35C6A2F3-300D-4052-AFDE-583242F7AA2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.BCryptNet.Tests", "Cerberix.Crypto.BCryptNet.Tests\Cerberix.Crypto.BCryptNet.Tests.csproj", "{490D73D6-9F03-49BC-8E9F-D06D11F58636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.DotNet.Tests", "Cerberix.Crypto.DotNet.Tests\Cerberix.Crypto.DotNet.Tests.csproj", "{AC1A955A-3A7A-4912-B3A2-2897E06B98E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C692D2AF-BDAB-4D68-AE29-E63EE7435D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C692D2AF-BDAB-4D68-AE29-E63EE7435D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C692D2AF-BDAB-4D68-AE29-E63EE7435D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C692D2AF-BDAB-4D68-AE29-E63EE7435D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C6A2F3-300D-4052-AFDE-583242F7AA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C6A2F3-300D-4052-AFDE-583242F7AA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C6A2F3-300D-4052-AFDE-583242F7AA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C6A2F3-300D-4052-AFDE-583242F7AA2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{490D73D6-9F03-49BC-8E9F-D06D11F58636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{490D73D6-9F03-49BC-8E9F-D06D11F58636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{490D73D6-9F03-49BC-8E9F-D06D11F58636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{490D73D6-9F03-49BC-8E9F-D06D11F58636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1A955A-3A7A-4912-B3A2-2897E06B98E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1A955A-3A7A-4912-B3A2-2897E06B98E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1A955A-3A7A-4912-B3A2-2897E06B98E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1A955A-3A7A-4912-B3A2-2897E06B98E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC712EDD-89AD-4259-9712-29C5999FA5E4}
+	EndGlobalSection
+EndGlobal

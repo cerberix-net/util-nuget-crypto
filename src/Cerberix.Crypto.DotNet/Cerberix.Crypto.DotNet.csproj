@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RuntimeIdentifiers>win7-x64</RuntimeIdentifiers>
+    <Authors>pacjman@cerberix.net</Authors>
+    <Company>cerberix.net</Company>
+    <Description>dotnet crypto module for dot net standard</Description>
+    <RepositoryUrl>https://github.com/cerberix-net/util-nuget-crypto/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.0-pre00</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/cerberix-net/util-nuget-crypto/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/cerberix-net/util-nuget-crypto/master/img/cerberix.png</PackageIconUrl>
+    <PackageId>Cerberix.Crypto.DotNet</PackageId>
+    <Product>Cerberix.Crypto.DotNet</Product>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cerberix.Crypto.Core" Version="1.0.0-pre00" />
+    <PackageReference Include="Cerberix.Extension.Core" Version="1.0.0-pre00" />
+    <PackageReference Include="Cerberix.Serialization.Core" Version="1.0.0-pre00" />
+  </ItemGroup>
+
+</Project>
