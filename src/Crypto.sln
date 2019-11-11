@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.Core", "Cerberix.Crypto.Core\Cerberix.Crypto.Core.csproj", "{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto", "Cerberix.Crypto\Cerberix.Crypto.csproj", "{0F9C8AFC-2118-4E15-A0CA-11E0E4BD6BF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cerberix.Crypto.DotNet", "Cerberix.Crypto.DotNet\Cerberix.Crypto.DotNet.csproj", "{C692D2AF-BDAB-4D68-AE29-E63EE7435D9B}"
 EndProject

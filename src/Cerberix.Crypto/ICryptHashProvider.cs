@@ -1,4 +1,4 @@
-﻿namespace Cerberix.Crypto.Core
+﻿namespace Cerberix.Crypto
 {
     public interface ICryptHashProvider
 	{

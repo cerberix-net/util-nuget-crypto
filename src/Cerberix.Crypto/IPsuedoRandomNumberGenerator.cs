@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cerberix.Crypto.Core
+namespace Cerberix.Crypto
 {
 	public interface IPsuedoRandomNumberGenerator : IDisposable
 	{
