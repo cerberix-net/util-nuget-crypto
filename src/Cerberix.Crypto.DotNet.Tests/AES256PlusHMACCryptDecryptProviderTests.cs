@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cerberix.Crypto.Core;
-using Cerberix.Serialization.Core;
+using Cerberix.Serialization;
 using Moq;
 using NUnit.Framework;
 
-namespace Cerberix.Crypto.DotNet.Logic.Tests
+namespace Cerberix.Crypto.DotNet.Tests
 {
     [TestFixture]
     public class AES256PlusHMACCryptDecryptProviderTests
@@ -22,7 +21,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenNullBase64ConverterExpectArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => AES256PlusHMACCryptProviderFactory.NewInstance(
+            Assert.Throws<ArgumentNullException>(() => Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: null,
                 byteConverter: new Mock<IByteConverter>(MockBehavior.Strict).Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -33,7 +32,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenNullByteConverterExpectArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => AES256PlusHMACCryptProviderFactory.NewInstance(
+            Assert.Throws<ArgumentNullException>(() => Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: null,
                 cryptKeyValue: MockCryptKeyValue,
@@ -44,7 +43,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenNullCryptKeyValueExpectArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => AES256PlusHMACCryptProviderFactory.NewInstance(
+            Assert.Throws<ArgumentNullException>(() => Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: new Mock<IByteConverter>(MockBehavior.Strict).Object,
                 cryptKeyValue: null,
@@ -55,7 +54,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenInvalidCryptKeyValueExpectArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AES256PlusHMACCryptProviderFactory.NewInstance(
+            Assert.Throws<ArgumentException>(() => Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: new Mock<IByteConverter>(MockBehavior.Strict).Object,
                 cryptKeyValue: MockAbcClearTextValue,
@@ -66,7 +65,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenNullHmacSaltValueExpectArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => AES256PlusHMACCryptProviderFactory.NewInstance(
+            Assert.Throws<ArgumentNullException>(() => Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: new Mock<IByteConverter>(MockBehavior.Strict).Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -77,7 +76,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenInvalidHmacSaltValueExpectArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AES256PlusHMACCryptProviderFactory.NewInstance(
+            Assert.Throws<ArgumentException>(() => Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: new Mock<IByteConverter>(MockBehavior.Strict).Object,
                 cryptKeyValue: MockHmacSaltValue,
@@ -88,12 +87,12 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void CryptWhenGivenNullClearTextExpectArgumentNullException()
         {
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: new Mock<IByteConverter>(MockBehavior.Strict).Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             Assert.Throws<ArgumentNullException>(() => crypt.Crypt(clearText: null));
         }
@@ -107,12 +106,12 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetBytes(input);
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: new Mock<IBase64Converter>(MockBehavior.Strict).Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             Assert.Throws<ArgumentException>(() => crypt.Crypt(clearText: string.Empty));
         }
@@ -132,12 +131,12 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetBytes(input);
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             string actual = crypt.Crypt(clearText: MockAbcClearTextValue);
 
@@ -162,12 +161,12 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetBytes(input);
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             string actual = crypt.Crypt(clearText: MockLoroIpsumClearTextValue);
 
@@ -192,12 +191,12 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetBytes(input);
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             string actual = crypt.Crypt(clearText: MockLotionClearTextValue);
 
@@ -230,16 +229,16 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetString(input.ToArray());
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             string cipherText = crypt.Crypt(clearText: MockAbcClearTextValue);
 
-            ICryptDecryptProvider decrypt = AES256PlusHMACCryptDecryptProviderFactory.NewInstance(
+            ICryptDecryptProvider decrypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -278,16 +277,16 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetString(input.ToArray());
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             string cipherText = crypt.Crypt(clearText: MockLoroIpsumClearTextValue);
 
-            ICryptDecryptProvider decrypt = AES256PlusHMACCryptDecryptProviderFactory.NewInstance(
+            ICryptDecryptProvider decrypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -326,16 +325,16 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetString(input.ToArray());
             }).Verifiable();
 
-            ICryptProvider crypt = AES256PlusHMACCryptProviderFactory.NewInstance(
+            ICryptProvider crypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
                 hmacSaltValue: MockHmacSaltValue
-                );
+                ) as ICryptProvider;
 
             string cipherText = crypt.Crypt(clearText: MockLotionClearTextValue);
 
-            ICryptDecryptProvider decrypt = AES256PlusHMACCryptDecryptProviderFactory.NewInstance(
+            ICryptDecryptProvider decrypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -370,7 +369,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetString(input.ToArray());
             }).Verifiable();
 
-            ICryptDecryptProvider decrypt = AES256PlusHMACCryptDecryptProviderFactory.NewInstance(
+            ICryptDecryptProvider decrypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -405,7 +404,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetString(input.ToArray());
             }).Verifiable();
 
-            ICryptDecryptProvider decrypt = AES256PlusHMACCryptDecryptProviderFactory.NewInstance(
+            ICryptDecryptProvider decrypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,
@@ -440,7 +439,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
                 return UTF8Encoding.UTF8.GetString(input.ToArray());
             }).Verifiable();
 
-            ICryptDecryptProvider decrypt = AES256PlusHMACCryptDecryptProviderFactory.NewInstance(
+            ICryptDecryptProvider decrypt = Factory.AES256PlusHMACPump.NewInstance(
                 base64Converter: mockBase64Converter.Object,
                 byteConverter: mockByteConverter.Object,
                 cryptKeyValue: MockCryptKeyValue,

@@ -1,8 +1,7 @@
 ﻿using System;
-using Cerberix.Crypto.Core;
 using NUnit.Framework;
 
-namespace Cerberix.Crypto.DotNet.Logic.Tests
+namespace Cerberix.Crypto.DotNet.Tests
 {
     [TestFixture]
     public class EchoCryptDecryptProviderTests
@@ -11,7 +10,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         public void CryptWhenGivenNullExpectArgumentNullException()
         {
             //  arrange
-            ICryptProvider crypt = EchoCryptProviderFactory.NewInstance();
+            ICryptProvider crypt = Factory.EchoPump.NewInstance() as ICryptProvider;
 
             //  act
             Assert.Throws<ArgumentNullException>(() => crypt.Crypt(null));
@@ -21,7 +20,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         public void CryptWhenGivenEmptyValueExpectEmptyValue()
         {
             //  arrange
-            ICryptProvider crypt = EchoCryptProviderFactory.NewInstance();
+            ICryptProvider crypt = Factory.EchoPump.NewInstance() as ICryptProvider;
 
             //  act
             string actual = crypt.Crypt(string.Empty);
@@ -35,7 +34,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         public void CryptWhenGivenSomeValueExpectSomeValue()
         {
             //  arrange
-            ICryptProvider crypt = EchoCryptProviderFactory.NewInstance();
+            ICryptProvider crypt = Factory.EchoPump.NewInstance() as ICryptProvider;
 
             //  act
             string actual = crypt.Crypt("echo");
@@ -49,7 +48,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         public void DecryptWhenGivenNullExpectArgumentNullException()
         {
             //  arrange
-            ICryptDecryptProvider crypt = EchoCryptDecryptProviderFactory.GetInstance();
+            ICryptDecryptProvider crypt = Factory.EchoPump.NewInstance();
 
             //  act
             Assert.Throws<ArgumentNullException>(() => crypt.Decrypt(null));
@@ -59,7 +58,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         public void DecryptWhenGivenEmptyValueExpectEmptyValue()
         {
             //  arrange
-            ICryptDecryptProvider crypt = EchoCryptDecryptProviderFactory.GetInstance();
+            ICryptDecryptProvider crypt = Factory.EchoPump.NewInstance();
 
             //  act
             string actual = crypt.Decrypt(string.Empty);
@@ -73,7 +72,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         public void DecryptWhenGivenSomeValueExpectSomeValue()
         {
             //  arrange
-            ICryptDecryptProvider crypt = EchoCryptDecryptProviderFactory.GetInstance();
+            ICryptDecryptProvider crypt = Factory.EchoPump.NewInstance();
 
             //  act
             string actual = crypt.Decrypt("echo");

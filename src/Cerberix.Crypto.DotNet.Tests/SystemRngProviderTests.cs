@@ -1,8 +1,7 @@
 ﻿using System;
-using Cerberix.Crypto.Core;
 using NUnit.Framework;
 
-namespace Cerberix.Crypto.DotNet.Logic.Tests
+namespace Cerberix.Crypto.DotNet.Tests
 {
     [TestFixture]
     public class SystemRngProviderTests
@@ -16,7 +15,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int numGenerations = 1000000; // test one meellion iterations
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
 
             for (var i = 0; i < numGenerations; i++)
             {
@@ -31,14 +30,14 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void Test__SystemRng__NextMaxValue01__ExpectException()
         {
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.Next(-1));
         }
 
         [Test]
         public void Test__SystemRng__NextMaxValue02__ExpectException()
         {
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.Next(int.MinValue));
         }
 
@@ -47,7 +46,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int maxValue = 0;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(maxValue);
 
             Assert.IsNotNull(actual);
@@ -59,7 +58,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int maxValue = 1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(maxValue);
 
             Assert.IsNotNull(actual);
@@ -71,7 +70,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int maxValue = 100;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(maxValue);
 
             Assert.IsNotNull(actual);
@@ -83,7 +82,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int maxValue = 1000000;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(maxValue);
 
             Assert.IsNotNull(actual);
@@ -95,7 +94,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int maxValue = int.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(maxValue);
 
             Assert.IsNotNull(actual);
@@ -108,7 +107,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = 1;
             const int maxValue = -1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.Next(minValue, maxValue));
         }
 
@@ -118,7 +117,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = 2;
             const int maxValue = 1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.Next(minValue, maxValue));
         }
 
@@ -127,7 +126,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int inputValue = 0;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -139,7 +138,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int inputValue = 1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -151,7 +150,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int inputValue = -1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -164,7 +163,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = 1;
             const int maxValue = 2;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -178,7 +177,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = 0;
             const int maxValue = int.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -192,7 +191,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = -1;
             const int maxValue = 0;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -206,7 +205,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = int.MinValue;
             const int maxValue = -1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -220,7 +219,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = -1;
             const int maxValue = 1;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -234,7 +233,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const int minValue = int.MinValue;
             const int maxValue = int.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.Next(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -251,7 +250,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const int numGenerations = 1000000; // test one meellion iterations
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
 
             for (var i = 0; i < numGenerations; i++)
             {
@@ -266,14 +265,14 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         [Test]
         public void Test__SystemRng__NextDoubleMaxValue01__ExpectException()
         {
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.NextDouble(-1.00));
         }
 
         [Test]
         public void Test__SystemRng__NextDoubleMaxValue02__ExpectException()
         {
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.NextDouble(double.MinValue));
         }
 
@@ -282,7 +281,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = 0.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -294,7 +293,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = 1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -306,7 +305,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = 100.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -318,7 +317,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = 1000000.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -330,7 +329,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = 1000.01;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -342,7 +341,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = 999.98;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -354,7 +353,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double maxValue = double.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(maxValue);
 
             Assert.IsNotNull(actual);
@@ -367,7 +366,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 1.00;
             const double maxValue = -1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.NextDouble(minValue, maxValue));
         }
 
@@ -377,7 +376,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 2.00;
             const double maxValue = 1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.NextDouble(minValue, maxValue));
         }
 
@@ -387,7 +386,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 2.22;
             const double maxValue = -3.34;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             Assert.Throws<ArgumentOutOfRangeException>(() => generator.NextDouble(minValue, maxValue));
         }
 
@@ -396,7 +395,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double inputValue = 0.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -408,7 +407,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double inputValue = 1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -420,7 +419,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double inputValue = -1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -432,7 +431,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double inputValue = 2.22;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -444,7 +443,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double inputValue = -3.34;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -456,7 +455,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
         {
             const double inputValue = double.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(inputValue, inputValue);
 
             Assert.IsNotNull(actual);
@@ -469,7 +468,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 1.00;
             const double maxValue = 2.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -483,7 +482,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 0.00;
             const double maxValue = double.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -497,7 +496,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = -1.00;
             const double maxValue = 0.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -511,7 +510,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = double.MinValue;
             const double maxValue = -1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -525,7 +524,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = -1.00;
             const double maxValue = 1.00;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -539,7 +538,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 0.01;
             const double maxValue = 0.02;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -553,7 +552,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = 0.99;
             const double maxValue = 1.11;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);
@@ -567,7 +566,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             const double minValue = double.MinValue;
             const double maxValue = double.MaxValue;
 
-            IPsuedoRandomNumberGenerator generator = SystemRngProviderFactory.NewInstance();
+            IPsuedoRandomNumberGenerator generator = Factory.SystemRngPump.NewInstance();
             var actual = generator.NextDouble(minValue, maxValue);
 
             Assert.IsNotNull(actual);

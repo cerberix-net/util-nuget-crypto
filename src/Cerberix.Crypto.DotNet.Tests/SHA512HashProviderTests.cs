@@ -1,13 +1,12 @@
 ﻿using System;
-using Cerberix.Crypto.Core;
-using Cerberix.Serialization.Core;
+using Cerberix.Serialization;
 using Moq;
 using NUnit.Framework;
 
-namespace Cerberix.Crypto.DotNet.Logic.Tests
+namespace Cerberix.Crypto.DotNet.Tests
 {
     [TestFixture]
-    public class MD5CryptHashProviderTests
+    public class SHA512HashProviderTests
     {
         [Test]
         public void HashWhenGivenNullExpectArgumentNullException()
@@ -15,7 +14,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             //  arrange
             var mockByteConverter = new Mock<IByteConverter>(MockBehavior.Strict);
 
-            ICryptHashProvider hash = MD5CryptHashProviderFactory.NewInstance(
+            ICryptHashProvider hash = Factory.SHA512Pump.NewInstance(
                 byteConverter: mockByteConverter.Object
                 );
 
@@ -33,7 +32,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             var mockByteConverter = new Mock<IByteConverter>(MockBehavior.Strict);
             mockByteConverter.Setup(m => m.ConvertToBytes(string.Empty)).Returns(new byte[0]).Verifiable();
 
-            ICryptHashProvider hash = MD5CryptHashProviderFactory.NewInstance(
+            ICryptHashProvider hash = Factory.SHA512Pump.NewInstance(
                 byteConverter: mockByteConverter.Object
                 );
 
@@ -42,7 +41,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
 
             //  assert
             Assert.IsNotNull(actual);
-            Assert.AreEqual("d41d8cd98f00b204e9800998ecf8427e", actual);
+            Assert.AreEqual("cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e", actual);
 
             //  verify
             mockByteConverter.Verify();
@@ -55,7 +54,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
             var mockByteConverter = new Mock<IByteConverter>(MockBehavior.Strict);
             mockByteConverter.Setup(m => m.ConvertToBytes("abc")).Returns(new byte[] { 97, 98, 99 }).Verifiable();
 
-            ICryptHashProvider hash = MD5CryptHashProviderFactory.NewInstance(
+            ICryptHashProvider hash = Factory.SHA512Pump.NewInstance(
                 byteConverter: mockByteConverter.Object
                 );
 
@@ -64,7 +63,7 @@ namespace Cerberix.Crypto.DotNet.Logic.Tests
 
             //  assert
             Assert.IsNotNull(actual);
-            Assert.AreEqual("900150983cd24fb0d6963f7d28e17f72", actual);
+            Assert.AreEqual("ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f", actual);
 
             //  verify
             mockByteConverter.Verify();
