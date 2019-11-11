@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cerberix.Crypto.BCryptNet" Version="1.0.0-pre01" />
+    <PackageReference Include="Cerberix.Crypto.BCryptNet" Version="1.1.2" />
     <PackageReference Include="NUnit" Version="3.11.0" />
   </ItemGroup>
 

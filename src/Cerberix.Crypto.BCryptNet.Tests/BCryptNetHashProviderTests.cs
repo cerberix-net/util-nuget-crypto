@@ -1,8 +1,7 @@
 ﻿using System;
-using Cerberix.Crypto.Core;
 using NUnit.Framework;
 
-namespace Cerberix.Crypto.BCryptNet.Logic.Tests
+namespace Cerberix.Crypto.BCryptNet.Tests
 {
     [TestFixture]
     public class BCryptNetHashProviderTests
@@ -12,14 +11,14 @@ namespace Cerberix.Crypto.BCryptNet.Logic.Tests
         [Test]
         public void BCryptHashWhenGivenNullExpectArgumentNullException()
         {
-            ICryptHashProvider hasher = BCryptNetHashProviderFactory.NewInstance(workFactor: MockWorkFactor);
+            ICryptHashProvider hasher = Factory.CryptHashPump.NewInstance(workFactor: MockWorkFactor);
             Assert.Throws<ArgumentNullException>(() => hasher.Hash(clearText: null));
         }
 
         [Test]
         public void BCryptHashWhenGivenEmptyStringExpectResult()
         {
-            ICryptHashProvider hasher = BCryptNetHashProviderFactory.NewInstance(workFactor: MockWorkFactor);
+            ICryptHashProvider hasher = Factory.CryptHashPump.NewInstance(workFactor: MockWorkFactor);
             string actual = hasher.Hash(clearText: string.Empty);
 
             Assert.IsNotNull(actual);
@@ -29,7 +28,7 @@ namespace Cerberix.Crypto.BCryptNet.Logic.Tests
         [Test]
         public void BCryptHashWhenGivenSomeStringExpectResult()
         {
-            ICryptHashProvider hasher = BCryptNetHashProviderFactory.NewInstance(workFactor: MockWorkFactor);
+            ICryptHashProvider hasher = Factory.CryptHashPump.NewInstance(workFactor: MockWorkFactor);
             string actual = hasher.Hash(clearText: "abc");
 
             Assert.IsNotNull(actual);
@@ -39,7 +38,7 @@ namespace Cerberix.Crypto.BCryptNet.Logic.Tests
         [Test]
         public void BCryptHashWhenGivenAnotherStringExpectResult()
         {
-            ICryptHashProvider hasher = BCryptNetHashProviderFactory.NewInstance(workFactor: MockWorkFactor);
+            ICryptHashProvider hasher = Factory.CryptHashPump.NewInstance(workFactor: MockWorkFactor);
             string actual = hasher.Hash(
                 clearText: "Ut est etiam invenire maluisset, ea porro debitis indoctum vim, ad eos error invidunt constituto. Eu velit quando fabellas sea. Sea fabellas dignissim at, lorem falli mundi sea eu. Ut eum gloriatur sadipscing, ius te expetenda omittantur"
                 );
